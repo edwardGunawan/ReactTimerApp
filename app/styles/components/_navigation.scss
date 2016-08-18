@@ -1,0 +1,15 @@
+// underscore means only to be imported, means this file is a partial ,and it usually use with other file, and this means nav will get loaded via code in the app .scss
+.top-bar, .top-bar ul {
+  background-color: $nav-background;
+}
+
+// same as .top-bar .menu-text{}
+.top-bar{
+  .menu-text{
+    color: $nav-text-color;
+  }
+  .menu > .menu-text > a {
+    display:inline;
+    padding:0;
+  }
+}

@@ -1,0 +1,5 @@
+Style:
+app.scss file is the root file, so usually the root file, it contains a bunch of imports.
+- means you don't define a bunch of selector, instead you load in the file that do that work.
+
+Create 2 new folder, 1 is base(spacing, or color, or variables file), and the other is components (custom component that we want to style, Ex: nav, and clock widget)

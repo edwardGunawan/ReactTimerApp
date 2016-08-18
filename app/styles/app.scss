@@ -1,0 +1,4 @@
+// app.scss file is the root of our style, and it consist of a bunch of imports
+// import all the file from other file
+@import "base/variables";
+@import "components/navigation";
