@@ -21,5 +21,19 @@ npm install karma@0.13.22 karma-chrome-launcher@0.2.2 karma-mocha@0.2.2 karma-mo
 Karma is a test runner, Mocha: series of function to make JS test easy
 
 you have to do karma.conf.js to place the config, and set the test in package.json for the test to karma start-> to tell the karma start when doing npm test
-
 for testing just do npm test
+
+/* testing in the test file will be like this */
+var expect = require('expect');
+describe('App', ()=>{ // it will have app keyword and tell if the test is success or not
+  it('should properly run tests', () => { // the test for karma for create the comment on the test, the it fuction is telling what the test should do
+    expect(1).toBe(1);
+  });
+}); // strictly visual fucntion, format output to be more readible
+
+In general, it is best to keep libraries small and specific. In the case of expect, it's only job is to
+assertion. Karma is responsible for running the test. Mocha is the framework that lets you create individual
+test cases and test suites using describe(), it(), beforeEach().. etc.
+
+karma.conf -> how we want to run our test, such as browsers use chrome browser, or framework, we want to use mocha
+browser.

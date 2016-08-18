@@ -9,13 +9,13 @@ module.exports = function(config){
     preprocessors: { // specifying the string that we want to use in files
       'app/tests/**/*.test.jsx' : ['webpack', 'sourcemap'] // means for all our test files we want to run two things, webpack and sourcemap(so when get errors they actually use the jsx not the bundle file)
     },
-    reporters:['mocha'], // the check box
-    client:{
+    reporters:['mocha'], // the check box or the one that report to the terminal
+    client:{ // send details down to the individual framework
       mocha:{
         timeout:'5000' // after 5 sec if the test is not loading then just cancel it
       }
     },
-    webpack:webpackConfig,
+    webpack:webpackConfig, // let us use the webpack config info to create test that use require to load in our module
     webpackServer: {
       noInfo: true
     }
