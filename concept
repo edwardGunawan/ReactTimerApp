@@ -37,3 +37,9 @@ test cases and test suites using describe(), it(), beforeEach().. etc.
 
 karma.conf -> how we want to run our test, such as browsers use chrome browser, or framework, we want to use mocha
 browser.
+
+
+* the tests folder will mirror the directory of app, so inside there will have components, and it will have
+the clock.test.jsx.
+* a few more function and methods to make test easier: it will take the format method and it will return the numebr
+as a string. react-addons-test-utils and it needs to match the version number of react and react-dom.
