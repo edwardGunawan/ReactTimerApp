@@ -3,3 +3,23 @@ app.scss file is the root file, so usually the root file, it contains a bunch of
 - means you don't define a bunch of selector, instead you load in the file that do that work.
 
 Create 2 new folder, 1 is base(spacing, or color, or variables file), and the other is components (custom component that we want to style, Ex: nav, and clock widget)
+
+
+Basic of Testing:
+Test simple JS component:
+* JSBin: to write a few function and check if everything passes.
+* assertion library: handle tool for testing
+  - Michael Jackson expect: get the installation and put the script tag into JSBin.
+  -then put just Console, and JS and start testing,
+    create a function, and then if you want to do it manual you do test the function manually,
+    but if you want to test it automated, you have to inset assertion
+    Ex: toBe => we check if the two value is the same expect(object).toBe(value,[message]), expect(add(3,5)).toBe(8);
+
+Installing Test into webpack config:
+npm install karma@0.13.22 karma-chrome-launcher@0.2.2 karma-mocha@0.2.2 karma-mocha-reporter@2.0.0 karma-sourcemap-loader@0.3.7 karma-webpack@1.7.0 mocha@2.4.5 expect@1.14.0
+
+Karma is a test runner, Mocha: series of function to make JS test easy
+
+you have to do karma.conf.js to place the config, and set the test in package.json for the test to karma start-> to tell the karma start when doing npm test
+
+for testing just do npm test
