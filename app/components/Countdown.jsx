@@ -5,12 +5,42 @@ var CountdownForm = require('CountdownForm')
 var Countdown = React.createClass({
   getInitialState: function(){
     return {
-      count : 0
+      count : 0,
+      countdownStatus:'stop'
     };
+  },
+  /* gets called if props or state gets updated and it gets pass prevProps, and
+  prevStates
+  So when I said countDownSatus :'start' it will call the componentDidUpdate method
+  this.state.countDownSatus after it will become start, and prevState will be stop
+  we can check if their equal or if they are not that mean it has been changed
+
+  We don't want to do a lot of development in componentDidUpdate, it is best to check what
+  changes you need to make and called separate function that handle that change */
+  componentDidUpdate: function(prevProps, prevState){
+    if(this.state.countdownStatus !== prevState.countdownStatus){ // we care if they are not the same, if they are the same the don't make any changes
+      switch(this.state.countdownStatus) {
+        case 'start' :
+          this.startTimer();
+          break;
+
+      }
+    }
+
+
+  },
+  startTimer: function(){
+    this.timer = setInterval(() => {
+      var newCount = this.state.count - 1;
+      this.setState({
+        count: newCount>= 0 ? newCount: 0
+      });
+    },1000);
   },
   handleOnSetCountdown: function(seconds) {
     this.setState({
-      count: seconds
+      count: seconds,
+      countdownStatus: 'start'
     });
   },
   render: function() {
