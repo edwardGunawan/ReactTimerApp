@@ -1,6 +1,9 @@
 Style:
 app.scss file is the root file, so usually the root file, it contains a bunch of imports.
 - means you don't define a bunch of selector, instead you load in the file that do that work.
+All the files that are imported into app.scss are essentially copy-and-pasted in
+the order that they are imported in. That means that all variables are available
+in all the imported files since the _variables.scss is imported first.
 
 Create 2 new folder, 1 is base(spacing, or color, or variables file), and the other is components (custom component that we want to style, Ex: nav, and clock widget)
 
@@ -43,3 +46,6 @@ browser.
 the clock.test.jsx.
 * a few more function and methods to make test easier: it will take the format method and it will return the numebr
 as a string. react-addons-test-utils and it needs to match the version number of react and react-dom.
+
+* to test the function using spy (which is a function) so in that sense, it test whether the function should be
+called or not, and we can expect on what the function can be called with
