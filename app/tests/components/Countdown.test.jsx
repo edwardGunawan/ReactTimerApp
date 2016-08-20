@@ -43,5 +43,32 @@ describe('Coundown', () => {
         done();
       },3001);
     });
+
+    /* every function that is inside the component can be called by the instance */
+    it('should paused countdown on pause status', (done) =>{
+      var countdown = TestUtils.renderIntoDocument(<Countdown />);
+      countdown.handleOnSetCountdown(3); // set the countdown to 3
+      countdown.handleStatusChange('paused'); // call on the handleStatusChange
+
+      setTimeout(() => {
+        expect(countdown.state.count).toBe(3);
+        expect(countdown.state.countdownStatus).toBe('paused');
+        done();
+      }, 1001);
+    });
+
+    it('should stopped coundown on stop status', (done) => {
+      var countdown = TestUtils.renderIntoDocument(<Countdown />);
+      countdown.handleOnSetCountdown(3);
+      countdown.handleStatusChange('stopped');
+
+      setTimeout(() => {
+        expect(countdown.state.count).toBe(0);
+        expect(countdown.state.countdownStatus).toBe('stopped');
+        done();
+      }, 1001);
+
+    });
+
   });
 });
