@@ -4,6 +4,7 @@ var React = require('react');
 started, you want to render the pause button, and when countdown status is paused,
 we want to render the start button, so it will get a props pass down,
 so it needs to defined the prop types*/
+// * at control we passed down new countdown status as we move from starting to pausing
 var Controls = React.createClass({
   /* specify what props needs to pass down from the parent component */
   propTypes: {

@@ -25,10 +25,10 @@ var Countdown = React.createClass({
           this.startTimer();
           break;
         case 'stopped' : // since we didn't use break, the code will execute stopped and paused
-          this.setState({count:0});
+          this.setState({count:0}); // means you clear the count to 0 and you also clear the interval to not keep minusing
         case 'paused' :
         /* reset the count and start the timer again if stopped, but paused just clear the timer */
-          clearInterval(this.timer);
+          clearInterval(this.timer); // means you stopped the Interval for keep going down, but the value is still the same
           this.timer=undefined;
           break;
 
@@ -37,12 +37,25 @@ var Countdown = React.createClass({
 
 
   },
+
+  /* when someone leaves the countdown page this interval will gets firing, even
+  if they go to timer and do something else  so we need to clear the timer.*/
+  componentWillUnmount: function(){
+    clearInterval(this.timer);
+    this.timer = 'undefined';
+  },
+
   startTimer: function(){
     this.timer = setInterval(() => {
       var newCount = this.state.count - 1;
       this.setState({
         count: newCount>= 0 ? newCount: 0
       });
+      /* that means after it finished it will called on stopped, and it will start
+      a brand new search automatically */
+      if(newCount === 0){
+        this.setState({countdownStatus: 'stopped'});
+      }
     },1000);
   },
   handleOnSetCountdown: function(seconds) {
@@ -58,6 +71,7 @@ var Countdown = React.createClass({
     var {count, countdownStatus} = this.state;
     var renderControlArea = () => {
       if(countdownStatus !== 'stopped'){
+        /* passing down status everytime when change, until it is countdownForm where there is no props */
         return <Controls countdownStatus={countdownStatus} onStatusChange={this.handleStatusChange} />
       } else {
         return <CountdownForm onSetCountdown={this.handleOnSetCountdown} />

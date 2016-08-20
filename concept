@@ -49,3 +49,54 @@ as a string. react-addons-test-utils and it needs to match the version number of
 
 * to test the function using spy (which is a function) so in that sense, it test whether the function should be
 called or not, and we can expect on what the function can be called with
+
+
+flex:
+Flexbox is an alternative to inline and block display modes. It has become popular over the last few years because it simplifies otherwise complex layouts. Flexbox makes it simple to create grids, columns, and responsive layouts.
+I always recommend A Complete Guide To Flexbox. It's a fantastic reference and it has some real-world examples near the end.
+
+Component Life Cycle:
+These method let you run code when certain things happened to your component.
+
+componentWillUnmount:
+* tab in into the function when component get removed, so when
+the component is switch from countdown to timer, it will fire the function.(when put componentWillUnmount in Countdown)
+* automatically gets fired by react, when visually get removed in the browser, right before
+your component get removed from the DOM.
+
+componentWillMount:
+* gets fired as your component first gets mounted, meaning if the component gets render to the screen
+the componentWillMount will called just before it gets shown to the screen.
+  * it doesn't have any access to the refs of the DOM, so if you want to make changes to the value of the
+  input field, or fetch values, you can't do that in componentWillMount.
+
+componentDidMount:
+* gets fired after everything got rendered, you are able to have access to any refs if you want to do
+updating.
+Ex: componentDidMount: function(){
+  console.log('componentDidMount');
+},
+
+
+componentWillMount will get fired first before componentDidMount.
+Ex: componentWillMount: function(){
+  console.log('componentWillMount');
+},
+
+componentDidUpdate: gets fired when an update to your application, either props or state.
+/* inside of the funciton there is nothing changes, so if you want to do this.setState nothing
+will change because it is before you update the props or state, but you can get the nextState, or nextProps */
+  componentWillUpdate: function(nextProps, nextState){
+
+},
+
+
+componentWillUpdate: gets fired before the update, and it will take the nextProps and the nextState.
+componentWillReceivedProps: take argument of (newProps)
+* updating props: how? in countdown, when the status changes, it will passed in a different props, so like
+clock its props totalSeconds props get updated every seconds.
+ex: componentWillReceiveProps: function(newProps){
+  /* track the countdown status props that is pass in from countdown in the console as it changes */
+  console.log('componentWillReceiveProps', newProps.countdownStatus);
+
+},
