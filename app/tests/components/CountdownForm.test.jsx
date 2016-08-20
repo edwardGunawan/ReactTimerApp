@@ -10,6 +10,9 @@ describe('CountdownForm',()=>{
   it('should exist', () => {
     expect(CountdownForm).toExist(); // to check if its exist or not
   });
+  /* we use spy because it is testing on the function that get pass to the child component, so
+  if the function is invalid then spy won't be called, if it is valid then spy will be called,
+  is to see whether or not you will call the function that is passed down. */
   it('should call onSetCountdown if valid seconds entered', () => {
     var spy = expect.createSpy(); // to create the spy for testing the function
     var countdownForm = TestUtils.renderIntoDocument(<CountdownForm onSetCountdown={spy}/>); // referencing the spy variable

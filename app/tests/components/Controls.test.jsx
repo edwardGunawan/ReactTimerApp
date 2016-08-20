@@ -11,7 +11,7 @@ describe('Controls', () => {
     expect(Controls).toExist();
   });
 });
-
+/* we don't use spy because there is no function that is passed down from the parent class */
 describe('render', () =>{
   it('should render pause when started', () =>{
     var controls = TestUtils.renderIntoDocument(<Controls countdownStatus="start"/>);

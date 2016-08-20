@@ -2,11 +2,12 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var Clock = require('Clock');
 var CountdownForm = require('CountdownForm')
+var Controls = require('Controls');
 var Countdown = React.createClass({
   getInitialState: function(){
     return {
       count : 0,
-      countdownStatus:'stop'
+      countdownStatus:'stopped'
     };
   },
   /* gets called if props or state gets updated and it gets pass prevProps, and
@@ -22,6 +23,13 @@ var Countdown = React.createClass({
       switch(this.state.countdownStatus) {
         case 'start' :
           this.startTimer();
+          break;
+        case 'stopped' : // since we didn't use break, the code will execute stopped and paused
+          this.setState({count:0});
+        case 'paused' :
+        /* reset the count and start the timer again if stopped, but paused just clear the timer */
+          clearInterval(this.timer);
+          this.timer=undefined;
           break;
 
       }
@@ -43,12 +51,22 @@ var Countdown = React.createClass({
       countdownStatus: 'start'
     });
   },
+  handleStatusChange: function(newStatus){
+    this.setState({countdownStatus:newStatus});
+  },
   render: function() {
-    var {count} = this.state;
+    var {count, countdownStatus} = this.state;
+    var renderControlArea = () => {
+      if(countdownStatus !== 'stopped'){
+        return <Controls countdownStatus={countdownStatus} onStatusChange={this.handleStatusChange} />
+      } else {
+        return <CountdownForm onSetCountdown={this.handleOnSetCountdown} />
+      }
+    }
     return (
       <div>
         <Clock totalSeconds={count} />
-        <CountdownForm onSetCountdown={this.handleOnSetCountdown} />
+        {renderControlArea()}
       </div>
     );
   }

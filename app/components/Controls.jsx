@@ -7,18 +7,27 @@ so it needs to defined the prop types*/
 var Controls = React.createClass({
   /* specify what props needs to pass down from the parent component */
   propTypes: {
-    coundownStatus: React.PropTypes.string.isRequired // that means the countdownstatus of props is required
+    countdownStatus: React.PropTypes.string.isRequired, // that means the countdownstatus of props is required
+    onStatusChange: React.PropTypes.func.isRequired
+  },
+  /* currying pattern, we using a function to generate a different function, the return value,
+  will be an arrow function, all this do is called a function that pass down by the parent props */
+  onStatusChange: function(newStatus){
+    return () => {
+      this.props.onStatusChange(newStatus);
+    }
+
   },
   render: function(){
     var {countdownStatus} = this.props; // get the countdownStatus property
     var renderStartStopButton = () => {
       if(countdownStatus === 'start'){
         return (
-          <button className="button secondary"> Pause </button>
+          <button className="button secondary" onClick = {this.onStatusChange('paused')}> Pause </button>
           );
       } else if( countdownStatus === 'paused'){
         return (
-          <button className="button primary"> Start </button>
+          <button className="button primary" onClick={this.onStatusChange('start')}> Start </button>
         );
       }
     };
@@ -26,7 +35,7 @@ var Controls = React.createClass({
     return (
       <div className="controls">
         {renderStartStopButton()}
-        <button className="button alert hollow">Clear</button>
+        <button className="button alert hollow" onClick={this.onStatusChange('stopped')}>Clear</button>
       </div>
 
 

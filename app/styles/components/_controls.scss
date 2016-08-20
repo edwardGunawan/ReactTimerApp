@@ -1,0 +1,12 @@
+.controls {
+  display: flex; // use flex box system to laying out the elements
+  justify-content:center; //center the button left and right
+
+  .button {
+    padding:.75rem 3rem; // top and button, left and right text to the border of the button
+  }
+
+  .button:first-child {
+    margin-right: 1.5rem;
+  }
+}
