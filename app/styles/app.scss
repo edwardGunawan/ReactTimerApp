@@ -2,6 +2,13 @@
 // import all the file from other file
 // we can leave off the extention and the _ when importing
 
+//foundation
+@import 'base/foundation-settings';
+@import 'foundation';
+@include foundation-everything;
+
+
+//components
 @import "base/variables";
 @import "components/navigation";
 @import "components/clock";

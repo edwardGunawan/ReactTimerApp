@@ -6,6 +6,7 @@ var CountdownForm = React.createClass({
     e.preventDefault();
     var strSeconds = this.refs.seconds.value;
 
+    console.log('input count ', $('input').length); // CURRENT NUMBER OF INPUT SCREEN IS 1
     /* pass the value up to the parent to see whether the data is valid
      expects a regular expression*/
     if(strSeconds.match(/^[0-9]*$/)) {
