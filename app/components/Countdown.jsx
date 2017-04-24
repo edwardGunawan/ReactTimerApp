@@ -46,6 +46,7 @@ var Countdown = React.createClass({
   },
 
   startTimer: function(){
+    /* adding a poperty into the component Countdown therefore, he is using this.timer */
     this.timer = setInterval(() => {
       var newCount = this.state.count - 1;
       this.setState({
